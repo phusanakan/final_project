@@ -1,5 +1,3 @@
-# try wrapping the code below that reads a persons.csv file in a class and make it more general such that it can read in any csv file
-
 import csv, os
 
 # __location__ = os.path.realpath(
@@ -183,14 +181,10 @@ class SeniorProject:
         self.evaluation_status = evaluation_status
 
     def submit_proposal(self, proposal):
-        # Add code for submitting a project proposal
         print(f"Project {self.project_id} submitted a proposal: {proposal}")
-        # Add specific logic as needed
 
     def submit_report(self, report):
-        # Add code for submitting the final project report
         print(f"Project {self.project_id} submitted the final report: {report}")
-        # Add specific logic as needed
 
 
 class Evaluation:

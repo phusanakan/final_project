@@ -1,9 +1,4 @@
-# import database module
 from database import Database, Login, Project, AdvisorPendingRequest, MemberPendingRequest, Person, Student, Faculty, Admin, SeniorProject, Evaluation
-
-# define a function called initializing
-
-# define a funcion called initializing
 
 
 def initializing():
@@ -14,20 +9,8 @@ def initializing():
     advisor_pending_request_table = db.add_table('advisor_pending', 'advisor_pending_request.csv', AdvisorPendingRequest)
     member_pending_requese_table = db.add_table('member_pending','member_pending_request.csv', MemberPendingRequest)
     return db
-    # Add more tables as needed for your project
-
-    # here are things to do in this function:
-
-    # DONE create an object to read all csv files that will serve as a persistent state for this program
-
-    # DONE create all the corresponding tables for those csv files
-
-    # DONE see the guide how many tables are needed
-
-    # DONE add all these tables to the database
 
 
-# define a funcion called login
 def login(db):
     login_table = db.tables.get('login')  # get table class from db by table name
 
@@ -46,11 +29,6 @@ def login(db):
         print("Login table not found.")
         return None
 
-
-# here are things to do in this function:
-   # add code that performs a login task
-        # ask a user for a username and password
-        # returns [ID, role] if valid, otherwise returning None
 
 def search_person_by_id(db, person_id, person_type):
     person_table = db.tables.get("persons")
@@ -111,8 +89,6 @@ def is_project_pending_member(db, project_id):
         return True
 
 
-# Update functions
-# DONE
 def update_login_role(db, update_id, role_name):
     login_table = db.tables.get('login')
     persons_table = db.tables.get('persons')
@@ -271,13 +247,7 @@ def see_all_advisor_pending_request(db):
         return
 
 
-# Student type function
-# DONE
 def create_project_by_student(db, person_login):
-    # 1. input Title DONE
-    # 2. Login ID search for person firstname DONE
-    # 3. Auto increment projectID DONE
-    # 4. Insert new Project to table DONE
     title = input('Enter title: ')
     person_id = person_login.ID
     project_id = -1
@@ -325,7 +295,6 @@ def see_all_pending_request_for_member(db, person_login):
         return
 
 
-# DONE
 def accept_member_request(db, person_login):
     member_pending_requese_table = db.tables.get("member_pending")
     if member_pending_requese_table:
@@ -386,8 +355,6 @@ def accept_member_request(db, person_login):
         return
 
 
-# Lead/Member type function
-# DONE
 def see_project_status(db, person_login):
     project_table = db.tables.get("project")
     if project_table:
@@ -400,7 +367,6 @@ def see_project_status(db, person_login):
         return
 
 
-# DONE
 def see_responded_to_request_member(db, person_login):
     project_table = db.tables.get("project")
     member_pending_requese_table = db.tables.get("member_pending")
@@ -421,7 +387,6 @@ def see_responded_to_request_member(db, person_login):
         return
 
 
-# DONE
 def see_and_modify_project(db, person_login):
     project_table = db.tables.get("project")
     if project_table:
@@ -536,8 +501,6 @@ def send_request_to_advisor(db, person_login):
         return
 
 
-# Faculty type function
-# DONE
 def see_all_pending_request_for_advisor(db, person_login):
     advisor_pending_requese_table = db.tables.get("advisor_pending")
     if advisor_pending_requese_table:
@@ -555,7 +518,6 @@ def see_all_pending_request_for_advisor(db, person_login):
         return
 
 
-# DONE
 def accept_advisor_request(db, person_login):
     advisor_pending_requese_table = db.tables.get("advisor_pending")
     if advisor_pending_requese_table:
@@ -616,8 +578,6 @@ def accept_advisor_request(db, person_login):
         return
 
 
-# Advisor type function
-# DONE
 def see_project_detail_for_advisor(db, person_login):
     project_table = db.tables.get("project")
     if project_table:
@@ -641,7 +601,6 @@ def see_student_member_for_advisor(db, person_login):
         return
 
 
-# define a function called exit
 def exit(db):
     persons_table = db.tables.get('persons')
     login_table = db.tables.get('login')
@@ -665,19 +624,9 @@ def exit(db):
         member_pending_requese_table.write_csv()
 
 
-# here are things to do in this function:
-# write out all the tables that have been modified to the corresponding csv files
-# By now, you know how to read in a csv file and transform it into a list of dictionaries. For this project, you also need to know how to do the reverse, i.e., writing out to a csv file given a list of dictionaries. See the link below for a tutorial on how to do this:
-
-# https://www.pythonforbeginners.com/basics/list-of-dictionaries-to-csv-in-python
-
-
-# make calls to the initializing and login functions defined above
-
 db = initializing()
-person_login = login(db)  # person_login is a Person class
+person_login = login(db)
 
-# based on the return value for login, activate the code that performs activities according to the role defined for that person_id
 
 if person_login.role == "admin":
     while True:
@@ -817,5 +766,4 @@ elif person_login.role == "advisor":
             print("Invalid choice please try agin with chioce (1,2 or 0)")
         print("\n")
 
-# once everyhthing is done, make a call to the exit function
 exit(db)

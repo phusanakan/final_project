@@ -26,8 +26,6 @@ class Database:
         return self.tables[table_name].rows
 
 
-# add in code for a Table class
-
 
 class Table:
     def __init__(self, file_path, row_class=None):
@@ -157,15 +155,12 @@ class Faculty(Person):
         super().__init__(person_id, first_name, last_name, 'faculty')
 
     def respond_to_request(self, student, project):
-        # Add code for a faculty to respond to a request to be a supervisor
         pass
 
     def view_all_projects(self):
-        # Add code for a faculty to view details of all projects
         pass
 
     def evaluate_project(self, project):
-        # Add code for a faculty to evaluate a project
         pass
 
 
@@ -174,7 +169,6 @@ class Admin(Person):
         super().__init__(person_id, first_name, last_name, 'admin')
 
     def manage_database(self):
-        # Add code for an admin to manage the database
         pass
 
 
@@ -208,17 +202,9 @@ class Evaluation:
         self.score = score
 
     def provide_feedback(self, comments):
-        # Add code for providing feedback on the project evaluation
         print(f"Evaluator {self.evaluator.first_name} {self.evaluator.last_name} provided feedback on project {self.project.project_id}: {comments}")
 
     def assign_score(self, score):
-        # Add code for assigning a score to the project
         print(
             f"Evaluator {self.evaluator.first_name} {self.evaluator.last_name} assigned a score of {score} to project {self.project.project_id}.")
-        # Add specific logic as needed
 
-
-
-# modify the code in the Table class so that it supports the insert operation where an entry can be added to a list of dictionary
-
-# modify the code in the Table class so that it supports the update operation where an entry's value associated with a key can be updated

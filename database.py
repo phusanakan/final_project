@@ -23,7 +23,7 @@ class Table:
         if os.path.exists(self.file_path):
             with open(self.file_path, 'r') as f:
                 rows = csv.DictReader(f)
-                self.feild_headers = rows.fieldnames
+                self.field_headers = rows.fieldnames
                 for r in rows:
                     if self.row_class:
                         self.rows.append(self.row_class(**r))

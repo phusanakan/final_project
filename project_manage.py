@@ -11,6 +11,7 @@ def initializing():
     member_pending_requese_table = db.add_table('member_pending','member_pending_request.csv', MemberPendingRequest)
     return db
 
+
 def login(db):
     login_table = db.tables.get('login')
     if login_table:

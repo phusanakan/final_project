@@ -11,10 +11,8 @@ def initializing():
     member_pending_requese_table = db.add_table('member_pending','member_pending_request.csv', MemberPendingRequest)
     return db
 
-
 def login(db):
-    login_table = db.tables.get('login')  # get table class from db by table name
-
+    login_table = db.tables.get('login')
     if login_table:
         while True:
             username = input('Enter username: ')
@@ -24,7 +22,7 @@ def login(db):
                     print(".\n.\n.\nLogged in")
                     return person
 
-                print("Invalid username or password. please try again")
+            print("Invalid username or password. please try again")
 
     else:
         print("Login table not found.")
@@ -161,8 +159,7 @@ def update_new_advisor_to_project(db, project_id, advisor_id):
             if found_project.advisor != "":
                 print(f"Already has advisor Can't add new advisor to Project ID {project_id}")
             else:
-                project_table.update(["projectID"], [project_id], ["advisor", "status"],
-                                     [advisor_id, "ready to solicit an advisor"])
+                project_table.update(["projectID"],[project_id], ["advisor", "status"], [advisor_id, "ready to solicit an advisor"])
     else:
         print("Project table not found")
         return
@@ -177,8 +174,6 @@ def update_project_status(db, project_id, project_status):
         return
 
 
-# Admin type function
-# DONE
 def see_all_project_information(db):
     project_table = db.tables.get("project")
     if project_table:
@@ -232,7 +227,6 @@ def see_all_member_pending_request(db):
         return
 
 
-# DONE
 def see_all_advisor_pending_request(db):
     advisor_pending_request_table = db.tables.get("advisor_pending")
     if advisor_pending_request_table:
@@ -278,7 +272,7 @@ def create_project_by_student(db, person_login):
     print(f"Created new project name {title}")
 
 
-# DONE
+
 def see_all_pending_request_for_member(db, person_login):
     member_pending_requese_table = db.tables.get("member_pending")
     if member_pending_requese_table:
@@ -292,7 +286,7 @@ def see_all_pending_request_for_member(db, person_login):
         if is_no_request:
             print("No any member request send to you.....!!!")
     else:
-        print("member pending requese table not found")
+        print("member pending request table not found")
         return
 
 
@@ -420,7 +414,6 @@ def see_and_modify_project(db, person_login):
         return
 
 
-# DONE
 def send_request_to_member(db, person_login):
     member_pending_requese_table = db.tables.get("member_pending")
     if member_pending_requese_table:
@@ -590,7 +583,6 @@ def see_project_detail_for_advisor(db, person_login):
         return
 
 
-# DONE
 def see_student_member_for_advisor(db, person_login):
     project_table = db.tables.get("project")
     if project_table:
@@ -654,7 +646,7 @@ if person_login.role == "admin":
             print("Exit Program...!!")
             break
         else:
-            print("Invalid choice please try agin with chioce (1,2,3,4,5 or 0)")
+            print("Invalid choice please try again with choice (1,2,3,4,5 or 0)")
         print("\n")
 
 elif person_login.role == "student":
@@ -676,7 +668,7 @@ elif person_login.role == "student":
             print("Exit Program...!!")
             break
         else:
-            print("Invalid choice please try agin with chioce (1,2,3 or 0)")
+            print("Invalid choice please try again with choice (1,2,3 or 0)")
         print("\n")
 
 elif person_login.role == "member":

@@ -1,17 +1,5 @@
 import csv, os
 
-# __location__ = os.path.realpath(
-#     os.path.join(os.getcwd(), os.path.dirname(__file__)))
-#
-# persons = []
-# with open(os.path.join(__location__, 'persons.csv')) as f:
-#     rows = csv.DictReader(f)
-#     for r in rows:
-#         persons.append(dict(r))
-# print(persons)
-
-# add in code for a Database class
-
 
 class Database:
     def __init__(self):
@@ -20,33 +8,35 @@ class Database:
     def add_table(self, table_name, file_path, row_class=None):
         table = Table(file_path, row_class)
         table.read_csv()
-        self.tables[table_name] = table # add new table to database tables dict
+        self.tables[table_name] = table
         return self.tables[table_name].rows
-
 
 
 class Table:
     def __init__(self, file_path, row_class=None):
         self.file_path = file_path
+        self.field_headers = []
         self.row_class = row_class
         self.rows = []
 
-    def read_csv(self): # load data from csv
+    def read_csv(self):  # load data from csv
         if os.path.exists(self.file_path):
             with open(self.file_path, 'r') as f:
                 rows = csv.DictReader(f)
+                self.feild_headers = rows.fieldnames
                 for r in rows:
                     if self.row_class:
                         self.rows.append(self.row_class(**r))
                     else:
                         self.rows.append(dict(r))
 
-    def write_csv(self): # save whole new data to csv
+    def write_csv(self):
         with open(self.file_path, 'w', newline='') as f:
-            fieldnames = self.rows[0].keys() if self.rows else []
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            rows_of_dict = [row.__dict__ for row in self.rows]
+            writer = csv.DictWriter(f, fieldnames=self.field_headers)
             writer.writeheader()
-            writer.writerows(self.rows)
+            if len(rows_of_dict) > 0:
+                writer.writerows(rows_of_dict)
 
     def insert(self, entry):
         if self.row_class:
@@ -142,7 +132,6 @@ class Student(Person):
     def join_project(self, lead, project):
         print(f"{self.first_name} {self.last_name} joined project {project.project_id} led by {lead.first_name} {lead.last_name}.")
 
-
     def send_invitation(self, member, project):
         print(f"{self.first_name} {self.last_name} sent an invitation to {member.first_name} {member.last_name} "
               f"for project {project.project_id}.")
@@ -180,6 +169,7 @@ class SeniorProject:
         self.report_status = report_status
         self.evaluation_status = evaluation_status
 
+
     def submit_proposal(self, proposal):
         print(f"Project {self.project_id} submitted a proposal: {proposal}")
 
@@ -196,9 +186,9 @@ class Evaluation:
         self.score = score
 
     def provide_feedback(self, comments):
-        print(f"Evaluator {self.evaluator.first_name} {self.evaluator.last_name} provided feedback on project {self.project.project_id}: {comments}")
+        print(
+            f"Evaluator {self.evaluator.first_name} {self.evaluator.last_name} provided feedback on project {self.project.project_id}: {comments}")
 
     def assign_score(self, score):
         print(
             f"Evaluator {self.evaluator.first_name} {self.evaluator.last_name} assigned a score of {score} to project {self.project.project_id}.")
-

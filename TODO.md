@@ -96,3 +96,15 @@ Allowed admins to check and delete all canceled projects.
 
 Exit Function:
 Implemented an exit function to write modified tables to CSV files.
+
+### Completion in %: 100%
+
+The program has achieved complete functionality for all planned features, ensuring a comprehensive and efficient project management system.
+
+### Missing Features
+
+- The program is 100% complete, and no additional features are missing.
+
+### Bug
+
+- No bugs have been identified in the program.

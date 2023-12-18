@@ -738,7 +738,7 @@ elif person_login.role == "faculty":
             print("Exit Program...!!")
             break
         else:
-            print("Invalid choice please try agin with chioce (1,2 or 0)")
+            print("Invalid choice please try again with choice (1,2 or 0)")
         print("\n")
 
 elif person_login.role == "advisor":

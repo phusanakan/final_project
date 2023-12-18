@@ -1,132 +1,94 @@
-# Project README
+# Project Management System
 
-## Overview
-Brief description of your project.
+This project implements a comprehensive Project Management System with various roles, including Admin, Student, Member, Lead, Advisor, Faculty, and relevant functionalities for each role.
 
-## Repository Contents
-- `database.py`: Contains classes `Database` and `Table` for storing data and facilitating database operations.
-- `project_manage.py`: Main script containing classes for each role, and activities related to each role.
-- `persons.csv`: CSV file containing information about all persons.
-- `login.csv`: CSV file containing information necessary for login.
-- `Project_table.csv`: CSV file containing project information (Initially empty, only header given).
-- `Member_pending_request.csv`: CSV file containing the history of requests to be a member (Initially empty, only header given).
-- `Advisor_pending_request.csv`: CSV file containing the history of requests to be an advisor (Initially empty, only header given).
+## Files
 
-## Files and Classes
+### database.py
 
-### `database.py`
-1. **Database:** Class for storing `Table` objects.
-   - Methods:
-     - `__init__(self)`: Constructor to initialize a `Database` instance.
-     - ...
+- **Database Class:** Used for storing Table objects.
+- **Table Class:** Stores data read from CSV files.
+- Various "quality of life" functions for easier interaction with project_manage.py.
 
-2. **Table:** Class for storing data read from CSV files.
-   - Methods:
-     - `__init__(self, table_name, columns)`: Constructor to initialize a `Table` instance.
-     - ...
+### project_manage.py
 
-3. Other "quality of life" functions included for easier work on `project_manage.py`.
+- Contains classes for each role, including the `Performance` class that utilizes the value returned from the `login()` function to perform role-specific activities.
 
-### `project_manage.py`
-1. **Performance:** Class using the value returned from `login()` function to perform activities of each role.
-   - Methods:
-     - `__init__(self, database)`: Constructor to initialize a `Performance` instance.
-     - ...
+### persons.csv
 
-2. Classes for each role (Student, Lead, Advisor, Faculty, Admin), each containing activities related to that role.
-   - Methods:
-     - Methods for actions specific to each role, e.g., checking project invitations, sending requests, etc.
+- Contains information about all individuals involved in the system.
 
+### login.csv
 
-**Roles and Actions**
+- Contains information necessary for login.
 
-_Student Role_
+### Project_table.csv
 
-| Action                               | Relevant Classes/Methods                        |
-|--------------------------------------|------------------------------------------------|
-| Check project invitations            | `check_project_invitations()`                   |
-| Create project                       | `create_project()`                              |
-| Check project status                 | `check_project_status()`                        |
-| Edit project details                 | `edit_project_details()`                        |
-| Submit project                       | `submit_project()`                              |
-| Cancel project                       | `cancel_project()`                              |
-| Logout                               | `logout()`                                      |
+- Contains all project information. Initially empty; only header provided.
 
-_Member Role_
+### Member_pending_request.csv
 
-| Action                         | Relevant Classes/Methods               |
-|--------------------------------|---------------------------------------|
-| Check Project Invitations      | `check_project_invitations()`          |
-| Create Project                 | `create_project()`                     |
-| Check Project Status           | `check_project_status()`               |
-| Edit Project Details           | `edit_project_details()`               |
-| Submit Project                 | `submit_project()`                     |
-| Cancel Project                 | `cancel_project()`                     |
-| Logout                         | `logout()`                             |
+- Contains all history of requests to be a member. Initially empty; only header provided.
 
+### Advisor_pending_request.csv
 
-| Action                               | Relevant Classes/Methods                        |
-|--------------------------------------|------------------------------------------------|
-| Check project invitations            | `check_project_invitations()`                   |
-| Create project                       | `create_project()`                              |
-| Check project status                 | `check_project_status()`                        |
-| Edit project details                 | `edit_project_details()`                        |
-| Submit project                       | `submit_project()`                              |
-| Cancel project                       | `cancel_project()`                              |
-| Logout                               | `logout()`                                      |
+- Contains all history of requests to be an advisor. Initially empty; only header provided.
 
-_Lead Role_
+## Usage
 
-| Action                               | Relevant Classes/Methods                        |
-|--------------------------------------|------------------------------------------------|
-| Check project invitations            | `check_project_invitations()`                   |
-| Create project                       | `create_project()`                              |
-| Check project status                 | `check_project_status()`                        |
-| Send member requests                 | `send_member_request()`                         |
-| Send advisor requests                | `send_advisor_request()`                        |
-| Submit project                       | `submit_project()`                              |
-| Cancel project                       | `cancel_project()`                              |
-| Logout                               | `logout()`                                      |
+1. Run the program.
+2. Log in with your credentials.
 
-_Advisor Role_
+## Role-Specific Actions
 
-| Action                               | Relevant Classes/Methods                        |
-|--------------------------------------|------------------------------------------------|
-| Check project invitations            | `check_project_invitations()`                   |
-| Accept/deny advisor requests         | `accept_advisor_request()`                      |
-| See project details                  | `see_project_details()`                         |
-| See student member details           | `see_student_member_details()`                  |
-| Submit project                       | `submit_project()`                              |
-| Cancel project                       | `cancel_project()`                              |
-| Logout                               | `logout()`                                      |
+### Admin Role
 
-_Faculty Role_
+- See all project information.
+- See all students not associated with any project.
+- See all faculty members not advising any project.
+- See all pending member requests.
+- See all pending advisor requests.
+
+### Student Role
+
+- See all pending requests.
+- Accept/deny requests.
+- Create a new project.
+
+### Member Role
+
+- See project status.
+- See and modify project information.
+- See who has responded to the requests sent out.
+
+### Lead Role
+
+- See project status.
+- See and modify project information.
+- See who has responded to the requests sent out.
+- Send out requests to potential members.
+- Send out requests to a potential advisor.
+
+### Advisor Role
+
+- See all pending requests.
+- Accept/deny requests.
+
+### Faculty Role
+
+- See project details for advised projects.
+- See all student details for advised projects.
+
+## Completion
+
+Everything in the program is 100% complete.
+
+## Missing Features
+
+- No missing features; the program is complete.
+
+## Bug
+
+- No bugs identified in the program.
 
 
-| Action                               | Relevant Classes/Methods                        |
-|--------------------------------------|------------------------------------------------|
-| Check project requests               | `check_project_requests()`                      |
-| See projects for approval            | `see_projects_for_approval()`                   |
-| See all student details              | `see_all_student_details()`                     |
-| Submit project                       | `submit_project()`                              |
-| Cancel project                       | `cancel_project()`                              |
-| Logout                               | `logout()`                                      |
-
-_Admin Role_
-
-| Action                               | Relevant Classes/Methods                        |
-|--------------------------------------|------------------------------------------------|
-| Check all projects information       | `see_all_project_information()`                 |
-| See member and faculty details        | `see_all_student_no_project()`                  |
-| See all member pending requests       | `see_all_member_pending_request()`              |
-| Check all advisor pending requests    | `see_all_advisor_pending_request()`            |
-| Check canceled projects              | `check_canceled_projects()`                     |
-| Logout                               | `logout()`                                      |
-
-Completion in %: 100%
-
-Missing Features
--
-
-Bug
--
